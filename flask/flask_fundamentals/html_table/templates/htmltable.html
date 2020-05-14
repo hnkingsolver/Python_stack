@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <style>
+            div.table{
+                width: 700px;
+                height: 500px;
+                margin-left: 300px;
+            }
+            h1{
+                text-align: center; color: teal; font-weight: bolder; font-family: monospace;
+            }
+        </style>
+    <title>Table!</title>
+</head>
+
+<body>
+    <h1>Here is my Table!</h1>
+    <div class="table">
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">First & Last Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in users %}
+                <tr>
+                    <td>{{i["first_name"]}}</td>
+                    <td>{{i["last_name"]}}</td>
+                    <td>{{i["first_name"] + " " + i["last_name"]}}</td>
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

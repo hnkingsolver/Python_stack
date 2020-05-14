@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Groups</title>
+</head>
+<body>
+    <div class="header" style="text-align: right;">
+        <a href="/groups">DashBoard</a>
+        <form action="/logout" method="POST">
+            {% csrf_token %}
+            <input type="submit" value="Log Out">
+        </form>
+    </div>
+    <div class="container">
+        <div style="display: inline-block;">
+        <h1 style="display: inline-block;">{{group.name}}</h1>
+        {% if user not in group.members.all %}
+        <form action="/joingroup/{{group.id}}" method="POST">
+            {%csrf_token%}
+            <input type="submit" value="Join Group">
+        </form>
+        {%else%}
+        <form action="/unjoingroup/{{group.id}}" method="POST">
+            {%csrf_token%}
+            <input type="submit" value="Leave Group">
+        </form>
+        {%endif%}
+        <p style="padding-bottom: 30px;">{{group.desc}}</p>
+        {% if group.added_by != user %}
+        <h3>Created By: {{group.added_by.first_name}} {{group.added_by.last_name}}</h3>
+        {%else%}
+        <h3>Created by: YOU</h3>
+        {%endif%}
+        <h4>Members:</h4>
+        <ul>
+        {% for group in group.members.all %}
+            <li>{{group.first_name}} {{group.last_name}}</li>
+        {% endfor %}
+        </ul>
+    </div>
+    </div>
+</body>
+</html>
+
+

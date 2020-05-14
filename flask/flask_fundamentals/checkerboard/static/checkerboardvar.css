@@ -1,0 +1,17 @@
+#container{
+    text-align: center;
+}
+.color1{
+    width: 85px;
+    height: 85px;
+    background-color: red;
+}
+.color2{
+    width: 85px;
+    height: 85px;
+    background-color: black;
+}
+#checkerboard{
+    text-align: center;
+    margin: 30px auto;
+}

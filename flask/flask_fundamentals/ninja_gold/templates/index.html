@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        h1 {
+            color: rgb(38, 52, 66);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Create three equal columns that floats next to each other */
+        .column {
+            float: left;
+            width: 20%;
+            padding: 10px;
+            height: 300px;
+            /* Should be removed. Only for demonstration */
+        }
+
+        h2 {
+            text-align: center;
+            color: rgb(38, 52, 66);
+        }
+
+        p {
+            text-align: center;
+            font-size: large;
+            font-weight: bold;
+            color: rgb(13, 37, 37);
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        form {
+            margin-left: 100px;
+        }
+
+        #goldbutton {
+            margin-left: -100px;
+            padding-bottom: 50px;
+            margin-bottom: 33px;
+            width: 73px;
+            font-size: larger;
+        }
+
+        .activities li {
+            list-style: none;
+        }
+
+        .earned {
+            color: green;
+        }
+
+        .lost {
+            color: red;
+        }
+        .activities{
+            overflow: scroll;
+            width: auto;
+            height: 200px;
+        }
+
+    </style>
+    <title>Ninja Gold Game!</title>
+</head>
+
+<body>
+    <div class="row">
+        <h1>Your Gold: {{gold}}</h1>
+        <form action="/reset" method="POST" class="reset">
+            <input id="goldbutton" type="submit" name="submit" value="Reset" />
+        </form>
+    </div>
+    <div class="row">
+        <div class="column" style=" background-color: #aaa;">
+            <h2>Farm</h2>
+            <p>Earns 10 - 20 gold!</p>
+            <form action="/process_money" method="POST">
+                <input type="hidden" name="action" value="farm" />
+                <input type="submit" name="submit" value="Find Gold!" />
+            </form>
+        </div>
+        <div class="column" style="background-color:#bbb;">
+            <h2>Cave</h2>
+            <p>Earns 5 - 10 gold!</p>
+            <form action="/process_money" method="POST">
+                <input class="button" type="hidden" name="action" value="cave" />
+                <input type="submit" name="submit" value="Find Gold!" />
+            </form>
+        </div>
+        <div class="column" style="background-color:#ccc;">
+            <h2>House</h2>
+            <p>Earns 2 - 5 gold!</p>
+            <form action="/process_money" method="POST">
+                <input type="hidden" name="action" value="house" />
+                <input type="submit" name="submit" value="Find Gold!" />
+            </form>
+        </div>
+        <div class="column" style="background-color:#aaa;">
+            <h2>Casino</h2>
+            <p>Earns 0 - 50 gold!</p>
+            <form action="/process_money" method="POST">
+                <input type="hidden" name="action" value="casino" />
+                <input type="submit" name="submit" value="Find Gold!" />
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <h3>Activities:</h3>
+    </div>
+    <div class="row">
+        <div class="activities">
+            {% if activities %}
+            <ul>
+                {% for class, activity in activities %}
+                <li class={{class}}>{{activity}}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+</body>
+
+</html>

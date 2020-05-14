@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Black Phillip Main Page</title>
+</head>
+
+<body>
+    <h1>Create Black Phillip</h1>
+    {% if messages %}
+        <ul>
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    <form action="/create" method="POST">
+        {% csrf_token %}
+        Name: <input name="name" type="text">
+        Model #: <input name="model_no" type="text">
+        Email: <input name="email" type="email">
+        <input type="submit" value="Create Black Phillip">
+    </form>
+    <h1>All the Phillips</h1>
+    {% for phillip in phillips %}
+        <p>{{phillip.name}}</p>
+    {% endfor %}
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dashboard</title>
+</head>
+
+<body>
+    <div class="header" style="display: inline-block;">
+        <h1 style="display: inline-block;">Hi, {{user.first_name}} {{user.last_name}}!</h1>
+        <form action="/logout" method="POST" style="text-align: right; display: inline-block; margin-left: 900px;">
+            {% csrf_token %}
+            <input type="submit" value="Log Out">
+        </form>
+    </div>
+    <div class="container" style="text-align: center; padding-top: 50px;">
+        <div class="organizations" style="display: inline-block; vertical-align: top;padding-right: 200px;">
+            <h3>Here are the organizations you may join!</h3>
+            <ul style="list-style-type: none; margin: 0; padding: 0;">
+                {% for group in groups %}
+                <li style="border: 2px solid black; margin-bottom: 10px;">
+                    <a href="/groups/{{group.id}}">{{group.name}}</a>
+                    <p>Members: {{group.members.count}}</p>
+                    <p style="width:300px; text-align: center;">{{group.desc}}</p>
+                    {% if group.added_by == user %}
+                    <form action="/groups/delete/{{group.id}}" method="POST" style="padding-bottom: 10px;">
+                        {% csrf_token %}
+                        <input type="submit" value="Delete Group">
+                    </form>
+                    {{else}}
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+
+        <div class="post_group" style="display: inline-block; border: 3px solid black;width: 300px; height: 250px;">
+            <h3>Create a New organization:</h3>
+            <form action="/postgroup" method="POST">
+                {% csrf_token %}
+                <div style="padding-bottom: 20px;">
+                    Org Name: <input type="text" name="name">
+                </div>
+                <div style="padding-bottom: 40px;">
+                    Description: <textarea name="desc" rows="2" cols="20" wrap="hard"></textarea>
+                </div>
+                <div>
+                    <input type="submit" value="Create">
+                </div>
+            </form>
+        </div>
+        <div style=" margin-left: 500px;">
+            {% if messages %}
+            <ul style="list-style-type: none" class="messages mt-4">
+                {% for message in messages %}
+                <p {% if message.tags %} class="{{ message.tags }} text-danger" {% endif %}>{{ message }}</p>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+        /* Extra small devices (phones, 600px and down) */
+        @media only screen and (max-width: 600px) {
+            body {
+                background: rgb(255, 248, 156);
+            }
+        }
+
+        /* Small devices (portrait tablets and large phones, 600px and up) */
+        @media only screen and (min-width: 600px) {
+            body {
+                background: rgb(151, 235, 151);
+            }
+        }
+
+        /* Medium devices (landscape tablets, 768px and up) */
+        @media only screen and (min-width: 768px) {
+            body {
+                background: rgb(183, 214, 255);
+            }
+        }
+
+        /* Large devices (laptops/desktops, 992px and up) */
+        @media only screen and (min-width: 992px) {
+            body {
+                background: rgb(255, 214, 137);
+            }
+        }
+
+        /* Extra large devices (large laptops and desktops, 1200px and up) */
+        @media only screen and (min-width: 1200px) {
+            body {
+                background: rgb(255, 207, 215);
+            }
+        }
+    </style>
+    <title>Edit a Show</title>
+</head>
+
+<body>
+    <div style="text-align: center;">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4" style="display: inline-block;">Add a New Show!</h1>
+            </div>
+        </div>
+        <div>
+            {% if messages %}
+            <ul style="list-style-type: none" class="messages mt-4">
+                {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }} text-danger" {% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <form action="/shows/{{show.id}}/update" method="POST" style="display: inline-block; width: 600px;">
+            {% csrf_token %}
+            <div class="row" style="display: inline-block; padding-bottom: 30px;">
+                    <label for="title">Title: </label>
+                    <input type="text" name="title" value="{{show.title}}" required style="width: 450px;">
+            </div>
+            <div class="row" style="display: inline-block; padding-bottom: 30px;">
+                    <label for="network">Network: </label>
+                    <input type="text" name="network" value="{{show.network}}" required>
+            </div>
+            <div class="row" style="display: inline-block; margin-left: 30px; padding-bottom: 30px;">
+                    <label for="network">Release Date: </label>
+                    <input type="date" name="release_date" value="{{show.release_date}}"required>
+            </div>
+            <div class="row" style="display: inline-block; padding-bottom: 30px;">
+                <label for="desc">Description:</label>
+                <textarea rows="2" cols="20" name="desc" wrap="hard" style="width: 400px; height: 100px;" value="{{show.desc}}"></textarea>
+            </div>
+            <button type="submit" name="updated_at" value="{{show.updated_at}}" style="margin: 30px;margin-left: 44px;"> Update</button>
+            </form>
+        </div>
+        <a href="/shows/{{show.id}}" style="margin-left: 19px;">Go to Show</a>
+        |
+        <a href="/shows">All Shows</a>
+    </div>
+</body>
+
+</html>

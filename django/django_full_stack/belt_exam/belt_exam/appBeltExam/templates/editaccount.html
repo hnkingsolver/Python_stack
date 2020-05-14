@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Edit Account</title>
+</head>
+<body>
+    <div>
+        <form action="/updateAccount/{{user.id}}" method="POST">
+            {% csrf_token %}
+            <div style="padding-bottom: 20px;">
+                First Name:<input type="text" name="first_name" value="{{user.first_name}}">
+            </div>
+            <div style="padding-bottom: 20px;">
+                Last Name:<input type="text" name="last_name" value="{{user.last_name}}">
+            </div>
+            <div style="padding-bottom: 20px;">
+                Email:<input type="email" name="email" value="{{user.email}}">
+            </div>
+            <div>
+                <input type="submit" value="Update">
+            </div>
+        </form>
+        {% if messages %}
+            <ul style="list-style-type: none" class="messages mt-4">
+                {% for message in messages %}
+                <p {% if message.tags %} class="{{ message.tags }} text-danger" {% endif %}>{{ message }}</p>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+</body>
+</html>

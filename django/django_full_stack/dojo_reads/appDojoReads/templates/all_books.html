@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>All Books</title>
+</head>
+
+<body>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container" style="display: inline-block;">
+            <h1 class="display-4">Welcome, {{user.first_name}}!</h1>
+        </div>
+        <div style="display: inline-block; text-align: right;">
+            <a href="/books/add"> Add Book and Review</a>
+            |
+            <a href="/">Log Out</a>
+        </div>
+    </div>
+    <div style="display: inline-block;">
+        <h4>Recent Book Reviews:</h4>
+        <ul style="text-decoration: none;">
+            <li>
+                <a href="#">{{book.title}}</a>
+                <p>Rating:</p>
+            </li>
+        </ul>
+    </div>
+    <div style="display: inline-block; vertical-align: top; padding-left: 100px;">
+        <h4>Other Books with Reviews:</h4>
+        <table class="table table-striped" style="overflow: scroll;">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for book in books %}
+                <tr>
+                    <td>{{book.title}}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

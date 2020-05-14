@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+            /* Extra small devices (phones, 600px and down) */
+            @media only screen and (max-width: 600px) {
+                body {
+                    background: rgb(255, 248, 156);
+                }
+            }
+    
+            /* Small devices (portrait tablets and large phones, 600px and up) */
+            @media only screen and (min-width: 600px) {
+                body {
+                    background: rgb(151, 235, 151);
+                }
+            }
+    
+            /* Medium devices (landscape tablets, 768px and up) */
+            @media only screen and (min-width: 768px) {
+                body {
+                    background: rgb(183, 214, 255);
+                }
+            }
+    
+            /* Large devices (laptops/desktops, 992px and up) */
+            @media only screen and (min-width: 992px) {
+                body {
+                    background: rgb(255, 214, 137);
+                }
+            }
+    
+            /* Extra large devices (large laptops and desktops, 1200px and up) */
+            @media only screen and (min-width: 1200px) {
+                body {
+                    background: rgb(255, 207, 215);
+                }
+            }
+        </style>
+    <title>Tv Show</title>
+</head>
+
+<body>
+    <div style="text-align: center;">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4">TV Show: {{show.id}} - {{show.title}}</h1>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <p>Title: {{show.title}}</p>
+            <p>Network: {{show.network}}</p>
+            <p>Release Date: {{show.release_date}}</p>
+            <p>Description: {{show.desc}}</p>
+            <p>Last Updated: {{show.updated_at}}</p>
+        </div>
+        <a href="/shows">All Shows</a>
+    </div>
+    <div style="text-align: center; margin-top: 100px;">
+        <a href="/shows/{{show.id}}/edit">Edit</a>
+        |
+        <a href="/shows/{{show.id}}/destroy">Delete</a>
+    </div>
+</body>
+
+</html>

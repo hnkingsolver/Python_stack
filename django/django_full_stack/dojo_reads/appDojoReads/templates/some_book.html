@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Some Book</title>
+</head>
+<body>
+    <div style="display: inline-block;">
+        <h3>{{book.title}}</h3>
+        <p>Author: {{book.author}}</p>
+    </div>
+    <div>
+        <h3>Reviews</h3>
+    {% for review in  %}
+    </div>
+
+
+
+    {% if messages %}
+    <ul style="list-style-type: none" class="messages mt-4">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }} text-danger" {% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</body>
+</html>

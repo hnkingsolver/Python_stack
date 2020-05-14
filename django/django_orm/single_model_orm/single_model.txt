@@ -1,0 +1,31 @@
+1) QUERY: CREATE 3 NEW USERS
+>>> User.objects.create(first_name= "Hannah", last_name= "Kingsolver", email_address= "hannahkingsolver@gmail.com", age="23")
+>>> User.objects.create(first_name= "Tanner", last_name= "Colley", email_address= "tanner.colley@gmail.com", age="29")
+>>> User.objects.create(first_name= "Gandolf", last_name= "Grey", email_address= "gandolf.the.grey@yourmother.com", age="10000")
+
+2) QUERY: RETRIEVE ALL THE USERS
+>>> User.objects.all()
+
+3) QUERY: RETRIEVE THE LAST USERS
+>>> User.objects.last()
+
+4) QUERY: RETRIEVE THE FIRST USER
+>>> User.objects.first()
+
+5) QUERY: CHANGE THE USER WITH ID=3 SO THEIR LAST NAME IS PANCAKES
+>>> user_to_update=User.objects.get(id=3)
+>>> user_to_update.last_name="Pancakes"
+>>> user_to_update.save()
+
+6) Query: Delete the user with id=2 from the database
+>>> user_to_delete = User.objects.get(id=2)
+>>> user_to_delete.delete()
+(1, {'users_app.User': 1})
+
+7) Query: Get all the users, sorted by their first name
+>>> User.objects.all().order_by("first_name")
+<QuerySet [First_name: Gandolf, First_name: Hannah]>
+
+*) BONUS Query: Get all the users, sorted by their first name in descending order
+>>> User.objects.all().order_by("-first_name")
+<QuerySet [First_name: Hannah, First_name: Gandolf]>

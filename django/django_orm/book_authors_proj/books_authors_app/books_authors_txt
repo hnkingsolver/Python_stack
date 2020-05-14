@@ -1,0 +1,106 @@
+1) Query: Create 5 books with the following names: C Sharp, Java, Python, PHP, Ruby
+<Book: Book object (1)>
+>>> Book.objects.create(title="Java", desc="Everything Java.")
+<Book: Book object (2)>
+>>> Book.objects.create(title="Python", desc="Everything Python.")
+<Book: Book object (3)>
+>>> Book.objects.create(title="PHP", desc="Everything PHP.")
+<Book: Book object (4)>
+>>> Book.objects.create(title="Ruby", desc="Everything Ruby.")
+<Book: Book object (5)>
+
+
+2) Query: Create 5 different authors: Jane Austen, Emily Dickinson, Fyodor Dostoevksy, William Shakespeare, Lau Tzu
+>>> Author.objects.create(first_name="Jane", last_name="Austen")
+<Author: Author object (1)>
+>>> Author.objects.create(first_name="Emily", last_name="Dickinson")
+<Author: Author object (2)>
+>>> Author.objects.create(first_name="Fyodor", last_name="Dostoevsky")
+<Author: Author object (4)>
+>>> Author.objects.create(first_name="William", last_name="Shakespear")
+<Author: Author object (5)>
+>>> Author.objects.create(first_name="Lau", last_name="Tzu")
+<Author: Author object (6)>
+
+
+3) Add a new text field in the authors table called 'notes'.
+notes = models.TextField(null=True)
+
+4) Create and run the migration files to update the table in your database.
+idk.. done
+
+5) Query: Change the name of the C Sharp book to C#
+>>> book_to_update = Book.objects.get(id=1)
+>>> book_to_update.title = "c#"
+>>> book_to_update.save()
+
+6) Query: Change the first name of the 4th author to Bill
+>>> author_to_update = Author.objects.get(id=5)
+>>> author_to_update.first_name = "Bill"
+>>> author_to_update.save()
+
+7) Query: Assign the first author to the first 2 books
+>>> book1 = Book.objects.get(id=1)
+>>> author = Author.objects.get(id=1)
+>>> book1.authors_book.add(author)
+
+>>> book2 = Book.objects.get(id=2)
+>>> author = Author.objects.get(id=1)
+>>> book2.authors_book.add(author)
+
+8) Query: Assign the second author to the first 3 books
+>>> author2 = Author.objects.get(id=2)
+>>> book1.authors_book.add(author2)
+>>> book2.authors_book.add(author2)
+>>> book3 = Book.objects.get(id=3)
+>>> book3.authors_book.add(author2)
+
+# >>> author2.books_author.all() <--- just looking at all of them hehehe
+
+9) Query: Assign the third author to the first 4 books
+>>> book1.authors_book.add(author3)
+>>> book2.authors_book.add(author3)
+>>> book3.authors_book.add(author3)
+>>> book4 = Book.objects.get(id=4)
+>>> book4.authors_book.add(author3)
+
+10) Query: Assign the fourth author to the first 5 books (or in other words, all the books)
+>>> book1.authors_book.add(author4)
+>>> book2.authors_book.add(author4)
+>>> book3.authors_book.add(author4)
+>>> book4.authors_book.add(author4)
+>>> book5.authors_book.add(author4)
+
+11) Query: Retrieve all the authors for the 3rd book
+>>> book3.authors_book.all()
+
+12) Query: Remove the first author of the 3rd book
+>>> book4 = Book.objects.get(id=4)
+>>> author4 = Author.objects.get(id=4)
+>>> book4.authors_book.remove(author4)
+
+13) Query: Add the 5th author as one of the authors of the 2nd book
+>>> author6 = Author.objects.get(id=6)
+>>> book2 = Book.objects.get(id=2)
+>>> author6.books_author.add(book2)
+
+14) Query: Find all the books that the 3rd author is part of
+>>> author4 = Author.objects.get(id=4)
+>>> author4.books_author.all()
+<QuerySet [<Book: Book object (1)>, <Book: Book object (2)>, <Book: Book object (3)>]>
+
+15) Query: Find all the authors that contributed to the 5th book
+>>> book5 = Book.objects.get(id=5)
+>>> book5.authors_book.all()
+
+<QuerySet [<Author: Author object (5)>]>
+>>> book5.authors_book.all().values("first_name")
+<QuerySet [{'first_name': 'Bill'}]>
+
+
+
+
+EXTRA STUFF:
+1) this is getting the values of all the books the author(id 4 in database) is an author of
+>>> author4.books_author.values("title", "desc")
+<QuerySet [{'title': 'c#', 'desc': 'Everything C Sharp.'}, {'title': 'Java', 'desc': 'Everything Java.'}, {'title': 'Python', 'desc': 'Everything Python.'}]>

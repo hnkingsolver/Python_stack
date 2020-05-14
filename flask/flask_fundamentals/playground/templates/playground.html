@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>I made a playground!</title>
+    <style>
+        * {
+            border-color: 1px solid blue;
+            margin: 0;
+            padding: 0;
+            border-color:  1px solid blue;
+        }
+
+        #title{
+            font-family: fantasy;
+            color: forestgreen;
+            font-size: 70px;
+            text-align: center;
+            font-style: italic;
+        }
+        div.box{
+            display: inline-block;
+            font-weight: 800;
+            background: blue;
+            font-size: 60px;
+            margin-left: 100px;
+            width: 300px;
+            height: 300px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+        <h1 id="title">Welcome to the Digital Playground!</h1>
+        {% for x in range(0, times) %}
+        <div class="box" style="background-color: {{color}};"></div>
+        {% endfor %}
+</body>
+</html>

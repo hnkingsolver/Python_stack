@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=], initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>ALL The Dungeons</title>
+    {% load static %}
+    <link rel="stylesheet" href=" {% static 'style.css' %} ">
+</head>
+
+<body>
+    <h1 style="margin-left: 560px;">Meet Your Doom in the GLOOM ROOM</h1>
+    <div class="container">
+        <table class="table table-striped table-dark" style="width: 375px; margin-left: 350px;">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Prisoners</th>
+                    <th scope="col">Location</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in db %}
+                <tr>
+                    <th scope="row">{{i.id}}</th>
+                    <td>{{i.name}}</td>
+                    <td>{{i.num_people_inside}}</td>
+                    <td>{{i.location}}</td>
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+    </div>
+    <div class="adddung" style="display: inline-block; margin-left: 500px;">
+        <div class="row">
+            <h1>Add a Dungeon</h1>
+        </div>
+        <div class="form">
+            <form action="/add" method="POST">
+                {%csrf_token%}
+                <div class="row">
+                    <label for="name">Dungeon</label>
+                    <input type="text" name="name" placeholder="Dungeon Name Here*">
+                </div>
+                <div class="row">
+                    <label for="name">Prisoners</label>
+                    <input type="text" name="prisoners" placeholder="# of Prisoners here*">
+                </div>
+                <div class="row">
+                    <label for="name">Location</label>
+                    <input type="text" name="location" placeholder="Prison Location here*">
+                </div>
+                <div>
+                    <input id="sum" type="submit">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="form" style="margin-left: 1100px; margin-top: -180px;">
+        <h1>Add A Prisoner</h1>
+        <form action="/addPrisoner" method="POST">
+            {%csrf_token%}
+            <div class="row">
+                <label for="name">First Name</label>
+                <input type="text" name="first_name" placeholder="Prisoners First Name*">
+            </div>
+            <div class="row">
+                <label for="name">Last Name</label>
+                <input type="text" name="last_name" placeholder="#Prisoners Last Name*">
+            </div>
+            <div class="row">
+                <label for="dungeon">Choose a Location:</label>
+                <select name="dungeon">
+                    {% for i in db%}
+                    <option value="{{i.id}}">{{i.name}}</option>
+                    {%endfor%}
+                </select>
+            </div>
+            <div>
+                <input id="sum" type="submit">
+            </div>
+        </form>
+        <a href="/list"> List of Bad People and Bad Places</a>
+    </div>
+
+</body>
+
+</html>

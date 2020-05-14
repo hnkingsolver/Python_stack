@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Books/Authors with Templates</title>
+</head>
+
+<body>
+    <div class="tm" style="display: inline-block;">
+        <h1>Add an Author!</h1>
+        <form action="/add_author" method="POST">
+            {% csrf_token %}
+            <div class="row" style="display: inline-block; margin-left: 20px;">
+                <label for="first_name">First Name: </label>
+                <input type="text" name="first_name" required>
+            </div>
+            <div class="row" style="margin-left: 20px;">
+                <label for="last_name">Last Name:</label>
+                <input type="text" name="last_name" required>
+            </div>
+            <div class="row" style="margin-left: 20px;">
+                <label for="notes">Notes:</label>
+                <input type="text" name="notes" required>
+            </div>
+            <input type="submit" value="Add" style="margin-left: 102px;">
+        </form>
+    </div>
+    <div class="container">
+        <table class="table table-striped table-dark" style="display: inline-block; width: 300px; margin-left: 300px; margin-top: -100px; overflow: scroll; height: 400px;">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in authors %}
+                <tr>
+                    <th scope="row">{{i.id}}</th>
+                    <td>{{i.first_name}} {{i.last_name}}</td>
+                    <td><a href="show_author/{{i.id}}">View</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <a href="/">Add a Book Here</a>
+</body>
+
+</html>

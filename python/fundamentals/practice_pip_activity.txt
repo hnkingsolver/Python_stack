@@ -1,0 +1,28 @@
+1) pip list- list includes the current versions of setuptools, asgiref, pip, pytz, sqlparse, and wheel.
+The pip list command returns the list of packages in the current environment. 
+It also returns the installed version for each package. 
+Packages are listed in a case-insensitive sorted order.
+
+2) deactivate- deactivates your environment
+
+3) pip3 list -List installed packages, including editables.
+Packages are listed in a case-insensitive sorted order.
+
+4) source py3Env/bin/activate - activates your environments.
+Python module for sourcing a bash script to augment the environment.
+
+5) pip install (whatever) - install things.
+
+6) pip freeze - Freezing is a process where pip reads the versions of all installed packages 
+in a local virtual environment and then produces a text file with the package 
+version for each python package specified. By convention, it's named requirements. 
+txt .
+
+~~~ It looks like pip freeze just doesn't list packages that pip itself depends on. 
+You may use the --all flag to show also those packages. The main difference is that 
+the output of pip freeze can be dumped into a requirements. 
+txt file and used later to re-construct the "frozen" environment.
+
+7) i see everything in my desktop, and nothing in the requirements file.
+
+8) pip searcg Flask - lots of "Flask-"something"".

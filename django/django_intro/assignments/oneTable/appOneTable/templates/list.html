@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>List of Prisoners and Their Locations</title>
+</head>
+<body>
+    <h1>
+        All The Prisoners or Whatever...
+    </h1>
+    {% for i in db %}
+    <ul>{{i.name}}
+        <form action="/delete/{{i.id}}" method="POST">
+        {%csrf_token%}
+        <input type="submit" value="Delete">
+        </form>
+        {%for j in i.all_prisoners.all %}
+        <li>{{j.first_name}} {{j.last_name}}</li>
+        {%endfor%}
+    </ul>
+    {%endfor%}
+    <a href="/">Back to Sending People to Their Doom</a>
+</body>
+</html>

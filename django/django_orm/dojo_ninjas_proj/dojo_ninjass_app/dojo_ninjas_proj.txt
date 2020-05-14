@@ -1,0 +1,63 @@
+1) Query: Create 3 new dojos
+>>> Dojo.objects.create(name="Coding Dojo", city="Dallas", state="Texas")
+<Dojo: Dojo object (1)>
+>>> Dojo.objects.create(name="Coding Dojo", city="Seattle", state="Washington")
+<Dojo: Dojo object (2)>
+>>> Dojo.objects.create(name="Coding Dojo", city="LA", state="California")
+<Dojo: Dojo object (3)>
+
+2) Query: Delete the 3 dojos you just created
+>>> dojo_to_delete = Dojo.objects.all()
+>>> dojo_to_delete.delete()
+
+3) Query: Create 3 more dojos
+<Dojo: Dojo object (4)>
+>>> Dojo.objects.create(name="Coding Dojo", city="Seattle", state="Washington")
+<Dojo: Dojo object (5)>
+>>> Dojo.objects.create(name="Coding Dojo", city="LA", state="California")
+<Dojo: Dojo object (6)>
+
+4) Query: Create 3 ninjas that belong to the first dojo
+>>> my_ninja = Ninja.objects.create(dojo_id=333, frist_name="Hannah", last_name="Kingsolver", home=Dojo.objects.get(id=7))
+>>> my_ninja = Ninja.objects.create(dojo_id=334, frist_name="Tanner", last_name="Colley", home=Dojo.objects.get(id=7))
+>>> my_ninja = Ninja.objects.create(dojo_id=335, frist_name="Spongbob", last_name="Squarepants", home=Dojo.objects.get(id=7))
+
+>>> Dojo.objects.get(id=4).ninjas.all() <--- THIS IS THE SHELL COMMAND TO SEE ALL THE NINJAS IN A SPECIFIC DOJO
+
+5) Query: Create 3 ninjas that belong to the second dojo
+>>> my_ninja = Ninja.objects.create(dojo_id=337, frist_name="Patrick", last_name="Star", home=Dojo.objects.get(id=8))
+>>> my_ninja = Ninja.objects.create(dojo_id=338, frist_name="Squidward", last_name="Tenticles", home=Dojo.objects.get(id=8))
+>>> my_ninja = Ninja.objects.create(dojo_id=69, frist_name="Mr.", last_name="Krabs", home=Dojo.objects.get(id=8))
+
+6) Query: Create 3 ninjas that belong to the third dojo
+>>> my_ninja = Ninja.objects.create(dojo_id=420, frist_name="Rob", last_name="Kardashian", home=Dojo.objects.get(id=9))
+>>> my_ninja = Ninja.objects.create(dojo_id=421, frist_name="Kim", last_name="Kardashian", home=Dojo.objects.get(id=9))
+>>> my_ninja = Ninja.objects.create(dojo_id=422, frist_name="Black", last_name="Chyna", home=Dojo.objects.get(id=9))
+
+7) Query: Retrieve all the ninjas from the first dojo
+>>> Dojo.objects.get(id=7).ninjas.all()
+<QuerySet [<Ninja: Ninja object (10)>, <Ninja: Ninja object (11)>, <Ninja: Ninja object (12)>]>
+
+8) Query: Retrieve all the ninjas from the last dojo
+>>> Dojo.objects.get(id=8).ninjas.all()
+<QuerySet [<Ninja: Ninja object (13)>, <Ninja: Ninja object (14)>, <Ninja: Ninja object (15)>]>
+
+9) Query: Retrieve the last ninja's dojo
+>>> Dojo.objects.get(id=9).ninjas.all()
+<QuerySet [<Ninja: Ninja object (16)>, <Ninja: Ninja object (17)>, <Ninja: Ninja object (18)>]>
+
+10) Add a new text field called "desc" to your Dojo class
+desc = models.TextField(null=True)
+
+11) Create and run the migration files to update the table in your database. If needed, provide a default value of "old dojo"
+(djangoPy3Env) Hannahs-MacBook-Pro:dojo_ninjas_proj hannahkingsolver$ python3 manage.py makemigrations
+You are trying to add a non-nullable field 'desc' to dojo without a default; we can't do that (the database needs something to populate existing rows).
+Please select a fix:
+ 1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+ 2) Quit, and let me add a default in models.py
+Select an option: 2
+(djangoPy3Env) Hannahs-MacBook-Pro:dojo_ninjas_proj hannahkingsolver$ python3 manage.py migrate
+
+12) Query: Create a new dojo
+>>> Dojo.objects.create(name="Coding Dojo", city="New York", state="New York")
+<Dojo: Dojo object (10)>

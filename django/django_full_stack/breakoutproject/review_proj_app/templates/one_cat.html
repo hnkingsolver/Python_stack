@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat Info</title>
+</head>
+<body>
+    <!-- Leave me blank for the group activity! -->
+    <h1>Name:{{cat.cat_name}}</h1>
+    <h1>Owners Name:{{cat.owner.name}}</h1>
+    <h1># of Votes:{{cat.users_who_voted_for.count}}</h1>
+    <h1>Users Who Have Voted for {{cat.cat_name}}:</h1>
+    <ul>
+        {% for user in cat.users_who_voted_for.all %}
+        <li>{{user.name}}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

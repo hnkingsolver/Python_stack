@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+
+    </style>
+    <title>Log In</title>
+</head>
+
+<body>
+    <div style="text-align: center;">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4">Register/Log In</h1>
+                <p class="lead">Create an account or log into an existing account here.</p>
+            </div>
+            {% if messages %}
+            <ul style="list-style-type: none" class="messages mt-4">
+                {% for message in messages %}
+                <p {% if message.tags %} class="{{ message.tags }} text-danger" {% endif %}>{{ message }}</p>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+        <div style="width: 20em; display: inline-block; ">
+            <h2 style="text-align: center; padding-bottom: 20px;">Register</h2>
+            <form action="/register" method="POST">
+                {% csrf_token %}
+                <div class="form-row">
+                    <div class="col">
+                        <input type="text" name="first_name" class="form-control" placeholder="First name">
+                    </div>
+                    <div class="col">
+                        <input type="text" name="last_name" class="form-control" placeholder="Last name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" name="email" class="form-control" id="exampleInputEmail1"
+                        aria-describedby="emailHelp">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                        else.</small>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Confirm Password</label>
+                    <input type="password" name="password_conf" class="form-control" id="exampleInputPassword1">
+                </div>
+                <div style="text-align: center;">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+
+
+        <div style="width: 25em; display: inline-block; vertical-align: top; padding-left: 100px;">
+            <h2 style="text-align: center; padding-bottom: 20px;">Log In</h2>
+            <form action="/login" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" name="email" class="form-control" id="exampleInputEmail1"
+                        aria-describedby="emailHelp">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                        else.</small>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+                </div>
+                <div style="text-align: center;">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+        {% if messages %}
+        <ul class="messages mb-4 error-box">
+            {% for message in messages %}
+            <span class="{{ message.tags }}"></span>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+</body>
+
+</html>
